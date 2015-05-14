@@ -17,7 +17,12 @@ public class BBCStatsEnabledVideoCastManager extends VideoCastManager {
     private final BBCCastStatsCallback bbcCastStatsCallback;
 
     public static synchronized BBCStatsEnabledVideoCastManager initialize(Context context,
-                                                           String applicationId, Class<?> targetActivity, String dataNamespace, BBCCastStatsCallback bbcCastStatsCallback) {
+                                                                          String applicationId, String dataNamespace, BBCCastStatsCallback bbcCastStatsCallback) {
+        return BBCStatsEnabledVideoCastManager.initialize(context, applicationId, BBCStatsEnabledVideoCastControllerActivity.class, dataNamespace, bbcCastStatsCallback);
+    }
+
+    public static synchronized BBCStatsEnabledVideoCastManager initialize(Context context,
+                                                                          String applicationId, Class<?> targetActivity, String dataNamespace, BBCCastStatsCallback bbcCastStatsCallback) {
         if (sInstance == null) {
             LOGD(TAG, "New instance of BBCStatsEnabledVideoCastManager is created");
             if (ConnectionResult.SUCCESS != GooglePlayServicesUtil
@@ -39,6 +44,7 @@ public class BBCStatsEnabledVideoCastManager extends VideoCastManager {
     protected MediaRouteDialogFactory getMediaRouteDialogFactory() {
         return new BBCStatsEnabledVideoMediaRouteDialogFactory();
     }
+
 
     public BBCCastStatsCallback getBBCCastStatsCallback() {
         return bbcCastStatsCallback;
