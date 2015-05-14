@@ -11,7 +11,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 
 /**
- * Created by lamons01 on 13/05/15.
+ * See https://gist.github.com/rharter/c2787f9ddd32651e8885
+ * @author Ryan Harter http://ryanharter.com/blog/2015/03/06/styling-chromecast-icons/
  */
 public class ThemeableMediaRouteButton extends MediaRouteButton {
     private static final String TAG = ThemeableMediaRouteButton.class.getSimpleName();

@@ -10,9 +10,7 @@ import com.google.android.libraries.cast.companionlibrary.cast.VideoCastManager;
 import static com.google.android.libraries.cast.companionlibrary.utils.LogUtils.LOGD;
 import static com.google.android.libraries.cast.companionlibrary.utils.LogUtils.LOGE;
 
-/**
- * Created by lamons01 on 14/05/15.
- */
+
 public class BBCStatsEnabledVideoCastManager extends VideoCastManager {
     private static final String TAG = BBCStatsEnabledVideoCastManager.class.getSimpleName();
     private static BBCStatsEnabledVideoCastManager sInstance;

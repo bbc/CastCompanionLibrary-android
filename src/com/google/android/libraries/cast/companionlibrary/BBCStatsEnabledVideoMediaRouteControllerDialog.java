@@ -4,9 +4,7 @@ import android.content.Context;
 
 import com.google.android.libraries.cast.companionlibrary.cast.dialog.video.VideoMediaRouteControllerDialog;
 
-/**
- * Created by lamons01 on 14/05/15.
- */
+
 public class BBCStatsEnabledVideoMediaRouteControllerDialog extends VideoMediaRouteControllerDialog {
     private final BBCCastStatsCallback bbcCastStatsCallback;
 

@@ -14,9 +14,7 @@ import com.google.android.libraries.cast.companionlibrary.cast.dialog.video.Vide
 
 import java.util.Locale;
 
-/**
- * Created by lamons01 on 14/05/15.
- */
+
 public class BBCStatsEnabledVideoMediaRouteControllerDialogFragment extends VideoMediaRouteControllerDialogFragment implements VideoCastConsumer {
     public BBCStatsEnabledVideoMediaRouteControllerDialogFragment() {
 
