@@ -156,7 +156,7 @@ public class VideoCastManager extends BaseCastManager
     }
 
     private static final String TAG = LogUtils.makeLogTag(VideoCastManager.class);
-    private static VideoCastManager sInstance;
+    public static VideoCastManager sInstance;
     private Class<?> mTargetActivity;
     private final Set<IMiniController> mMiniControllers = Collections
             .synchronizedSet(new HashSet<IMiniController>());

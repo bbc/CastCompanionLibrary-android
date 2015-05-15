@@ -12,7 +12,7 @@ import static com.google.android.libraries.cast.companionlibrary.utils.LogUtils.
 
 
 public class BBCStatsEnabledVideoCastManager extends VideoCastManager {
-    private static final String TAG = BBCStatsEnabledVideoCastManager.class.getSimpleName();
+    private static final String TAG = "BBCCastManager";
     private static BBCStatsEnabledVideoCastManager sInstance;
     private final BBCCastStatsCallback bbcCastStatsCallback;
 
@@ -31,6 +31,7 @@ public class BBCStatsEnabledVideoCastManager extends VideoCastManager {
                 LOGE(TAG, msg);
             }
             sInstance = new BBCStatsEnabledVideoCastManager(context, applicationId, targetActivity, dataNamespace, bbcCastStatsCallback);
+            VideoCastManager.sInstance = sInstance;
         }
         return sInstance;
     }
@@ -48,5 +49,14 @@ public class BBCStatsEnabledVideoCastManager extends VideoCastManager {
 
     public BBCCastStatsCallback getBBCCastStatsCallback() {
         return bbcCastStatsCallback;
+    }
+
+    public static VideoCastManager getInstance() {
+        if (sInstance == null) {
+            String msg = "No VideoCastManager instance was found, did you forget to initialize it?";
+            LOGE(TAG, msg);
+            throw new IllegalStateException(msg);
+        }
+        return sInstance;
     }
 }
