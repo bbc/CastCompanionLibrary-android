@@ -3,15 +3,18 @@ package com.google.android.libraries.cast.companionlibrary;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.media.MediaRouter;
+import android.view.View;
 
 import com.google.android.gms.cast.ApplicationMetadata;
 import com.google.android.gms.cast.CastDevice;
+import com.google.android.gms.cast.MediaQueueItem;
 import com.google.android.gms.cast.TextTrackStyle;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.libraries.cast.companionlibrary.cast.callbacks.VideoCastConsumer;
 import com.google.android.libraries.cast.companionlibrary.cast.dialog.video.VideoMediaRouteControllerDialog;
 import com.google.android.libraries.cast.companionlibrary.cast.dialog.video.VideoMediaRouteControllerDialogFragment;
 
+import java.util.List;
 import java.util.Locale;
 
 
@@ -116,6 +119,36 @@ public class BBCStatsEnabledVideoMediaRouteControllerDialogFragment extends Vide
 
     @Override
     public void onMediaLoadResult(int statusCode) {
+
+    }
+
+    @Override
+    public void onMediaQueueUpdated(List<MediaQueueItem> queueItems, MediaQueueItem item, int repeatMode, boolean shuffle) {
+
+    }
+
+    @Override
+    public void onRemoteMediaPreloadStatusUpdated(MediaQueueItem item) {
+
+    }
+
+    @Override
+    public void onRemoteMediaPlayerQueueStatusUpdated(List<MediaQueueItem> queueItems, MediaQueueItem item, int repeatMode, boolean shuffle) {
+
+    }
+
+    @Override
+    public void onUpcomingPlayClicked(View v, MediaQueueItem item) {
+
+    }
+
+    @Override
+    public void onUpcomingStopClicked(View view, MediaQueueItem upcomingItem) {
+
+    }
+
+    @Override
+    public void onMediaQueueOperationResult(int operationId, int statusCode) {
 
     }
 

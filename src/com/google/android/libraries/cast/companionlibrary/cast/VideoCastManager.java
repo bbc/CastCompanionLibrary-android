@@ -138,8 +138,6 @@ import java.util.concurrent.TimeUnit;
 public class VideoCastManager extends BaseCastManager
         implements OnMiniControllerChangedListener, OnFailedListener {
 
-    private static final String TAG = LogUtils.makeLogTag(VideoCastManager.class);
-
     public static final String EXTRA_HAS_AUTH = "hasAuth";
     public static final String EXTRA_MEDIA = "media";
     public static final String EXTRA_START_POINT = "startPoint";
