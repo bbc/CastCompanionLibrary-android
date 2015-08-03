@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cast_primary_tint">#08f</color>
+    <color name="cast_primary_tint_alpha">#908f</color>
+</resources>

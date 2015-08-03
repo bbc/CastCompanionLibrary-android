@@ -82,6 +82,15 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/cc" />
 
+            <ImageButton
+                android:id="@+id/cast_subtitle_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/selectable_item_background"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_cast_volume_slider_subtitles"
+                android:visibility="invisible" />
+
             <TextView
                 android:id="@+id/live_text"
                 android:layout_width="fill_parent"

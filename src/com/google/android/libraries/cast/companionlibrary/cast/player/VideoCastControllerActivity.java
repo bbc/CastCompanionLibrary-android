@@ -53,6 +53,8 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
+import com.google.android.libraries.cast.companionlibrary.BBCCastSubtitles;
+
 /**
  * This class provides an {@link android.app.Activity} that clients can easily add to their
  * applications to provide an out-of-the-box remote player when a video is casting to a cast device.
@@ -101,6 +103,9 @@ public class VideoCastControllerActivity extends ActionBarActivity implements
     private Toolbar mToolbar;
     private int mNextPreviousVisibilityPolicy
             = VideoCastController.NEXT_PREV_VISIBILITY_POLICY_DISABLED;
+
+    private ImageButton mBBCClosedCaptionIcon;
+    private BBCCastSubtitles mCastSubtitles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,6 +186,10 @@ public class VideoCastControllerActivity extends ActionBarActivity implements
         mMini = (MiniController) findViewById(R.id.miniController1);
         mMini.setCurrentVisibility(false);
         setClosedCaptionState(CC_DISABLED);
+
+        mBBCClosedCaptionIcon = (ImageButton) findViewById(R.id.cast_subtitle_button);
+        mCastSubtitles = new BBCCastSubtitles(mBBCClosedCaptionIcon);
+
         mPlayPause.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -250,6 +259,19 @@ public class VideoCastControllerActivity extends ActionBarActivity implements
                     showTracksChooserDialog();
                 } catch (TransientNetworkDisconnectionException | NoConnectionException e) {
                     LOGE(TAG, "Failed to get the media", e);
+                }
+            }
+        });
+
+        mBBCClosedCaptionIcon.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    mCastSubtitles.toggleSubtitles();
+                } catch (TransientNetworkDisconnectionException e) {
+                    e.printStackTrace();
+                } catch (NoConnectionException e) {
+                    e.printStackTrace();
                 }
             }
         });
