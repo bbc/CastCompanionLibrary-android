@@ -113,7 +113,6 @@ public class VideoCastControllerActivity extends ActionBarActivity implements
         setContentView(R.layout.cast_activity);
         loadAndSetupViews();
         mCastManager = VideoCastManager.getInstance();
-        mCastManager.addMiniController(mMini);
         mVolumeIncrement = mCastManager.getVolumeStep();
 
         Bundle extras = getIntent().getExtras();
@@ -142,6 +141,18 @@ public class VideoCastControllerActivity extends ActionBarActivity implements
             mListener = videoCastControlleFragment;
             mListener.onConfigurationChanged();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mCastManager.addMiniController(mMini);
+    }
+
+    @Override
+    protected void onPause() {
+        mCastManager.removeMiniController(mMini);
+        super.onPause();
     }
 
     @Override
