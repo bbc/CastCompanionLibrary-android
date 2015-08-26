@@ -133,11 +133,6 @@ public class BBCStatsEnabledVideoMediaRouteControllerDialogFragment extends Vide
     }
 
     @Override
-    public void onRemoteMediaPlayerQueueStatusUpdated(List<MediaQueueItem> queueItems, MediaQueueItem item, int repeatMode, boolean shuffle) {
-
-    }
-
-    @Override
     public void onUpcomingPlayClicked(View v, MediaQueueItem item) {
 
     }
