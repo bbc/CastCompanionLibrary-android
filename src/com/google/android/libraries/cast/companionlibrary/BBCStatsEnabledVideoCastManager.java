@@ -6,6 +6,7 @@ import android.support.v7.app.MediaRouteDialogFactory;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.libraries.cast.companionlibrary.cast.VideoCastManager;
+import com.google.android.libraries.cast.companionlibrary.cast.player.VideoCastController;
 
 import static com.google.android.libraries.cast.companionlibrary.utils.LogUtils.LOGD;
 import static com.google.android.libraries.cast.companionlibrary.utils.LogUtils.LOGE;
@@ -38,6 +39,7 @@ public class BBCStatsEnabledVideoCastManager extends VideoCastManager {
     protected BBCStatsEnabledVideoCastManager(Context context, String applicationId, Class<?> targetActivity, String dataNamespace, BBCCastStatsCallback bbcCastStatsCallback) {
         super(context, applicationId, targetActivity, dataNamespace);
         this.bbcCastStatsCallback = bbcCastStatsCallback;
+        setNextPreviousVisibilityPolicy(VideoCastController.NEXT_PREV_VISIBILITY_POLICY_HIDDEN);
     }
 
     @Override
