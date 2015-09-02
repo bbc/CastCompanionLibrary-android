@@ -9,4 +9,32 @@ public interface BBCCastStatsCallback {
     void castDialogControl();
     void castDialogCancel();
     void castActivityPageView();
+
+    static BBCCastStatsCallback NULL = new BBCCastStatsCallback() {
+        @Override
+        public void castIconClicked() {
+
+        }
+
+        @Override
+        public void castDialogDisconnect() {
+
+        }
+
+        @Override
+        public void castDialogControl() {
+
+        }
+
+        @Override
+        public void castDialogCancel() {
+
+        }
+
+        @Override
+        public void castActivityPageView() {
+
+        }
+    };
+
 }
