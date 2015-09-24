@@ -7,13 +7,15 @@ import android.support.v7.app.MediaRouteDialogFactory;
 
 public class BBCStatsEnabledVideoMediaRouteDialogFactory extends MediaRouteDialogFactory {
 
-    public BBCStatsEnabledVideoMediaRouteDialogFactory() {
+    private boolean showControlDialogVolumeControl;
 
+    public BBCStatsEnabledVideoMediaRouteDialogFactory(boolean showControlDialogVolumeControl) {
+        this.showControlDialogVolumeControl = showControlDialogVolumeControl;
     }
 
     @NonNull
     @Override
     public BBCStatsEnabledVideoMediaRouteControllerDialogFragment onCreateControllerDialogFragment() {
-        return new BBCStatsEnabledVideoMediaRouteControllerDialogFragment();
+        return BBCStatsEnabledVideoMediaRouteControllerDialogFragment.newInstance(showControlDialogVolumeControl);
     }
 }

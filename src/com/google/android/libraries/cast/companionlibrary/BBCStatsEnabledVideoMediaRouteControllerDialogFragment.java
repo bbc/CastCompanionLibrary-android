@@ -19,13 +19,34 @@ import java.util.Locale;
 
 
 public class BBCStatsEnabledVideoMediaRouteControllerDialogFragment extends VideoMediaRouteControllerDialogFragment implements VideoCastConsumer {
+
+
+    private static final String SHOW_VOLUME_CONTROL = "show_volume_control;";
+    private boolean showVolumeControl;
+
+    public static BBCStatsEnabledVideoMediaRouteControllerDialogFragment newInstance(boolean showControlDialogVolumeControl) {
+        BBCStatsEnabledVideoMediaRouteControllerDialogFragment fragment = new BBCStatsEnabledVideoMediaRouteControllerDialogFragment();
+
+        Bundle args = new Bundle();
+        args.putBoolean(SHOW_VOLUME_CONTROL, showControlDialogVolumeControl);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
     public BBCStatsEnabledVideoMediaRouteControllerDialogFragment() {
 
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        showVolumeControl = getArguments().getBoolean(SHOW_VOLUME_CONTROL, true);
+    }
+
+    @Override
     public VideoMediaRouteControllerDialog onCreateControllerDialog(Context context, Bundle savedInstanceState) {
-        return new BBCStatsEnabledVideoMediaRouteControllerDialog(context, getStatsCallback());
+        return new BBCStatsEnabledVideoMediaRouteControllerDialog(context, getStatsCallback(), showVolumeControl);
     }
 
     @Override
