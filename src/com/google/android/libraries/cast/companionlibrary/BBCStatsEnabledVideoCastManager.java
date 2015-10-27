@@ -3,10 +3,13 @@ package com.google.android.libraries.cast.companionlibrary;
 import android.content.Context;
 import android.support.v7.app.MediaRouteDialogFactory;
 
+import com.google.android.gms.cast.MediaStatus;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.libraries.cast.companionlibrary.cast.VideoCastManager;
-import com.google.android.libraries.cast.companionlibrary.cast.dialog.video.VideoMediaRouteDialogFactory;
+import com.google.android.libraries.cast.companionlibrary.cast.exceptions.CastException;
+import com.google.android.libraries.cast.companionlibrary.cast.exceptions.NoConnectionException;
+import com.google.android.libraries.cast.companionlibrary.cast.exceptions.TransientNetworkDisconnectionException;
 import com.google.android.libraries.cast.companionlibrary.cast.player.VideoCastController;
 
 import static com.google.android.libraries.cast.companionlibrary.utils.LogUtils.LOGD;
@@ -64,5 +67,31 @@ public class BBCStatsEnabledVideoCastManager extends VideoCastManager {
             throw new IllegalStateException(msg);
         }
         return sInstance;
+    }
+
+    /**
+     * Toggles the playback of the media.
+     *
+     * Overriden to ensure simulcast media reloads from a stopped state, as simulcast currently does
+     * not pause
+     *
+     * @throws CastException
+     * @throws NoConnectionException
+     * @throws TransientNetworkDisconnectionException
+     */
+    public void togglePlayback() throws CastException, TransientNetworkDisconnectionException,
+            NoConnectionException {
+        checkConnectivity();
+        boolean isPlaying = isRemoteMediaPlaying();
+        if (isPlaying) {
+            pause();
+        } else {
+            if (getPlaybackStatus() == MediaStatus.PLAYER_STATE_IDLE
+                    && (getIdleReason() == MediaStatus.IDLE_REASON_FINISHED || isRemoteStreamLive())) {
+                loadMedia(getRemoteMediaInformation(), true, 0);
+            } else {
+                play();
+            }
+        }
     }
 }
