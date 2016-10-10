@@ -19,6 +19,7 @@ package com.google.android.libraries.cast.companionlibrary.cast;
 import static com.google.android.libraries.cast.companionlibrary.utils.LogUtils.LOGD;
 import static com.google.android.libraries.cast.companionlibrary.utils.LogUtils.LOGE;
 
+import com.amazon.whisperplay.fling.provider.FlingMediaRouteProvider;
 import com.google.android.gms.cast.ApplicationMetadata;
 import com.google.android.gms.cast.Cast;
 import com.google.android.gms.cast.Cast.ApplicationConnectionResult;
@@ -57,6 +58,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.MediaRouteActionProvider;
 import android.support.v7.app.MediaRouteButton;
 import android.support.v7.app.MediaRouteDialogFactory;
+import android.support.v7.media.MediaControlIntent;
 import android.support.v7.media.MediaRouteSelector;
 import android.support.v7.media.MediaRouter;
 import android.support.v7.media.MediaRouter.RouteInfo;
@@ -188,8 +190,12 @@ public abstract class BaseCastManager
         mPreferenceAccessor.saveStringToPreference(PREFS_KEY_APPLICATION_ID, applicationId);
 
         mMediaRouter = MediaRouter.getInstance(mContext);
-        mMediaRouteSelector = new MediaRouteSelector.Builder().addControlCategory(
-                CastMediaControlIntent.categoryForCast(mApplicationId)).build();
+        mMediaRouter.addProvider(new FlingMediaRouteProvider(mContext, "amzn.thin.pl"));
+
+        mMediaRouteSelector = new MediaRouteSelector.Builder().
+                addControlCategory(CastMediaControlIntent.categoryForCast(mApplicationId)).
+                addControlCategory(MediaControlIntent.CATEGORY_REMOTE_PLAYBACK).
+                build();
 
         mMediaRouterCallback = new CastMediaRouterCallback(this);
         mMediaRouter.addCallback(mMediaRouteSelector, mMediaRouterCallback,
