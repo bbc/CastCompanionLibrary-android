@@ -19,7 +19,6 @@ package com.google.android.libraries.cast.companionlibrary.cast;
 import static com.google.android.libraries.cast.companionlibrary.utils.LogUtils.LOGD;
 import static com.google.android.libraries.cast.companionlibrary.utils.LogUtils.LOGE;
 
-import com.amazon.whisperplay.fling.provider.FlingMediaRouteProvider;
 import com.google.android.gms.cast.ApplicationMetadata;
 import com.google.android.gms.cast.Cast;
 import com.google.android.gms.cast.Cast.ApplicationConnectionResult;
@@ -190,7 +189,6 @@ public abstract class BaseCastManager
         mPreferenceAccessor.saveStringToPreference(PREFS_KEY_APPLICATION_ID, applicationId);
 
         mMediaRouter = MediaRouter.getInstance(mContext);
-        mMediaRouter.addProvider(new FlingMediaRouteProvider(mContext, "amzn.thin.pl"));
 
         mMediaRouteSelector = new MediaRouteSelector.Builder().
                 addControlCategory(CastMediaControlIntent.categoryForCast(mApplicationId)).

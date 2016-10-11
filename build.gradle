@@ -57,6 +57,4 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.+'
     compile 'com.android.support:mediarouter-v7:22.2.+'
     compile 'com.google.android.gms:play-services-cast:7.8.+'
-    compile files('libs/AmazonFling.jar')
-    compile files('libs/WhisperPlay.jar')
 }
